@@ -1,39 +1,39 @@
-<!DOCTYPE html>
+<!DOCTYPE>
 
-<html>
+<html lang="en">
 
 	<head>
-		<title>Clementine.js - The elegant and lightweight full stack JavaScript boilerplate.</title>
-		
-		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
-	</head>
+		<meta charset="utf-8" />
 
-	<header>
-		<p>Welcome, <span id="display-name"></span>!</p>
-		<a class="menu" href="/profile">Profile</a>
-		<p>|</p>
-		<a class="menu" href="/logout">Logout</a>
-	</header>
+		<title>Timestamp_Microservice</title>
+		<link href="/css/main.css" rel="stylesheet" type="text/css">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">		
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	</head>
 
 	<body>
 		<div class="container">
-			<img src="/public/img/clementine_150.png" />
-			<br />
-			<p class="clementine-text">Clementine.js</p>
+			
+		    <h1 class="header">API Basejump: Timestamp Microservice</h1>
+		    <blockquote>User Stories:
+		        <ol>
+		            <li>I can pass a string as a parameter, and it will check to see whether that string contains either a unix
+		                timestamp or a natural language date (example: January 1, 2016)
+		            </li>
+		            <li>If it does, it returns both the Unix timestamp and the natural language form of that date.</li>
+		            <li>If it does not contain a date or Unix timestamp, it returns <code>null</code> for those properties.</li>
+		        </ol>
+		    </blockquote>
+		    <h2>Example usage:</h2>
+		    <p><code>https://test-hackerq.c9users.io/December%2015,%202015</code><br></p>
+		    <p><code>https://test-hackerq.c9users.io/1450137600</code></p>
+		    <h2>Example output:</h2>
+		    <p><code>{ "unix": 1450137600, "natural": "December 15, 2015" }</code><br></p>
+		    <p><code>{ "unix": null, "natural": null }</code></p>
 		</div>
-	
-		<div class="container">
-			<p>You have clicked the button <span id="click-nbr"></span> times.</p>
-			<br />
-			<div class="btn-container">
-				<button type="submit" class="btn btn-add">CLICK ME!</button>
-				<button class="btn btn-delete">RESET</button>
-			</div>
-		</div>
-		
-		<script type="text/javascript" src="common/ajax-functions.js"></script>
-		<script type="text/javascript" src="controllers/clickController.client.js"></script>
-		<script type="text/javascript" src="controllers/userController.client.js"></script>
 	</body>
-
 </html>

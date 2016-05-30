@@ -1,33 +1,29 @@
-'use strict';
-
 var express = require('express');
-var routes = require('./app/routes/index.js');
-var mongoose = require('mongoose');
-var passport = require('passport');
-var session = require('express-session');
-
 var app = express();
-require('dotenv').load();
-require('./app/config/passport')(passport);
-
-mongoose.connect(process.env.MONGO_URI);
-
-app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
-app.use('/public', express.static(process.cwd() + '/public'));
-app.use('/common', express.static(process.cwd() + '/app/common'));
-
-app.use(session({
-	secret: 'secretClementine',
-	resave: false,
-	saveUninitialized: true
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-routes(app, passport);
-
+var moment = require('moment');
+var fs = require('fs');
+var path = require('path');
 var port = process.env.PORT || 8080;
-app.listen(port,  function () {
-	console.log('Node.js listening on port ' + port + '...');
+
+app.use(express.static(path.join(__dirname +'/public')));
+app.get('/', function(req,res){
+  res.sendFile(path.join(__dirname + 'index.html'));
+});
+
+app.get('/:query', function(req,res){
+  var unixTime = null;
+  var naturalTime = null;
+  var datePattern = ["MMMM/DD/YYYY", "DD/MMMM/YYYY", "YYYY/MMMM/DD", "MM/DD/YYYY",
+  "DD/MM/YYYY", "YYYY/MM/DD"];
+  if(!isNaN(req.params.query)){
+    unixTime = req.params.query;
+    naturalTime = moment.unix(unixTime).format("MMMM D, YYYY");
+  }else if(moment(req.params.query, datePattern).isValid()){
+    naturalTime = moment(req.params.query, datePattern).format('MMMM D, YYYY');
+    unixTime = moment(naturalTime, datePattern).unix();
+  }
+  res.send({unix: unixTime, natural: naturalTime});
+});
+app.listen(port,function(){
+  console.log('listen:' + port);
 });

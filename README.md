@@ -8,9 +8,9 @@ If it does not contain a date or Unix timestamp, it returns null for those prope
 
 Example usage:
 
-https://test-hackerq.c9users.io/December%2015,%202015
+https://dry-reef-56215.herokuapp.com/December%2015,%202015
 
-https://test-hackerq.c9users.io/1450137600
+https://dry-reef-56215.herokuapp.com/1450137600
 
 Example output:
 
